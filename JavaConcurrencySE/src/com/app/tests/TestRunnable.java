@@ -1,6 +1,9 @@
 package com.app.tests;
 
 import java.io.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class TestRunnable {
     public static void main(String[] args) {
@@ -18,7 +21,17 @@ public class TestRunnable {
             }
         };
 
-        Thread thread1 = new Thread(runnable);
-        thread1.start();
+        /*
+
+            Option 1: Thread Class
+            Thread thread1 = new Thread(runnable);
+            thread1.start();
+
+            Option 2: Executor Framework
+         */
+
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(runnable);
+
     }
 }
